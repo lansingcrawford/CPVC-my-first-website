@@ -1,155 +1,1639 @@
 <!DOCTYPE html>
-<!--
-  ================================================================
-  READ THIS BEFORE YOU PASTE ANYTHING
-
-  When Gemini gives you a page, you do NOT paste it into a part of
-  this file. You replace the entire file.
-
-  Click into the editor, press Ctrl+A (Cmd+A on Mac), press Delete,
-  then paste. Everything here is meant to be thrown away.
-
-  Do that only AFTER your live link works. Get the link first.
-  ================================================================
--->
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My first site</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy: #0d1d30;
-    --card: #142a44;
-    --line: #27466a;
-    --aqua: #6de1d7;
-    --text: #ffffff;
-    --muted: #94a9bf;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--navy);
-    color: var(--text);
-    font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
-    line-height: 1.6;
-    display: flex;
-    justify-content: center;
-    padding: 6vh 20px;
-  }
-  main { width: 100%; max-width: 640px; }
-  .badge {
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin-bottom: 18px;
-  }
-  h1 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 800;
-    font-size: clamp(38px, 9vw, 68px);
-    letter-spacing: -0.05em;
-    line-height: 1.02;
-    margin: 0 0 8px;
-  }
-  .name {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: clamp(18px, 4vw, 24px);
-    letter-spacing: -0.04em;
-    color: var(--aqua);
-    margin: 0 0 24px;
-  }
-  p.lead { font-size: 18px; color: var(--muted); margin: 0 0 34px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 12px;
-    padding: 26px 28px;
-    margin-bottom: 18px;
-  }
-  .card h2 {
-    font-family: "Unbounded", "Manrope", sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-    color: var(--aqua);
-    margin: 0 0 16px;
-  }
-  ol { margin: 0; padding-left: 20px; }
-  li { margin-bottom: 12px; color: var(--muted); }
-  li:last-child { margin-bottom: 0; }
-  li b { color: var(--text); font-weight: 700; }
-  code {
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 0.92em;
-    background: #0a1727;
-    border: 1px solid var(--line);
-    border-radius: 5px;
-    padding: 1px 6px;
-    color: var(--aqua);
-  }
-  a { color: var(--aqua); }
-  footer {
-    margin-top: 30px;
-    font-size: 14px;
-    color: #6e839a;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PropInvest Pro - Real Estate Investment & Deal Evaluator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0b0f19;
+      --bg-card: #151c2c;
+      --bg-card-hover: #1e273d;
+      --bg-input: #0f1523;
+      --border-color: #232d42;
+      --accent-green: #10b981;
+      --accent-green-hover: #059669;
+      --accent-blue: #3b82f6;
+      --accent-cyan: #06b6d4;
+      --accent-amber: #f59e0b;
+      --accent-red: #ef4444;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius-sm: 6px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.5;
+    }
+
+    /* Header & Navigation */
+    header {
+      background-color: rgba(21, 28, 44, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .logo-badge {
+      background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan));
+      color: #000;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.5rem;
+      background: var(--bg-input);
+      padding: 0.35rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 0.6rem 1.1rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-btn:hover {
+      color: var(--text-main);
+    }
+
+    .nav-btn.active {
+      background-color: var(--accent-blue);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    /* Main Content Layout */
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      padding: 2rem 1.5rem;
+      flex: 1;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Grid Layouts */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-1-2 {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 1100px) {
+      .grid-1-2 { grid-template-columns: 1fr; }
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .nav-tabs { width: 100%; overflow-x: auto; }
+      .header-container { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+
+    /* Card Components */
+    .card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    /* Form Controls */
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-prefix, .input-suffix {
+      position: absolute;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      font-weight: 600;
+      pointer-events: none;
+    }
+
+    .input-prefix { left: 0.75rem; }
+    .input-suffix { right: 0.75rem; }
+
+    input, select {
+      width: 100%;
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.75rem;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-weight: 600;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--accent-blue);
+    }
+
+    input.has-prefix { padding-left: 1.8rem; }
+    input.has-suffix { padding-right: 2.2rem; }
+
+    .range-slider {
+      width: 100%;
+      margin-top: 0.5rem;
+      accent-color: var(--accent-blue);
+    }
+
+    /* Buttons & Actions */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-green);
+      color: #022c22;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-green-hover);
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--bg-card-hover);
+      border-color: var(--text-muted);
+    }
+
+    .btn-sm {
+      padding: 0.35rem 0.75rem;
+      font-size: 0.78rem;
+    }
+
+    /* Dynamic Metrics KPI Box */
+    .kpi-card {
+      background-color: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kpi-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--accent-blue);
+    }
+
+    .kpi-card.positive::after { background: var(--accent-green); }
+    .kpi-card.warning::after { background: var(--accent-amber); }
+    .kpi-card.negative::after { background: var(--accent-red); }
+
+    .kpi-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .kpi-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.1;
+    }
+
+    .kpi-sub {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* Section Preset Pills */
+    .preset-pills {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+      overflow-x: auto;
+      padding-bottom: 0.25rem;
+    }
+
+    .pill-btn {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 0.35rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .pill-btn:hover {
+      border-color: var(--accent-blue);
+      color: var(--text-main);
+    }
+
+    /* Charts Container */
+    .chart-box {
+      position: relative;
+      width: 100%;
+      height: 260px;
+      margin-top: 1rem;
+    }
+
+    /* Comparison Table */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    th {
+      background-color: var(--bg-input);
+      color: var(--text-muted);
+      font-weight: 700;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-main);
+    }
+
+    tr:hover td {
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    /* Strategy Quiz Cards */
+    .strategy-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .strategy-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-3px);
+    }
+
+    .strategy-card.recommended {
+      border: 2px solid var(--accent-green);
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.05), var(--bg-card));
+    }
+
+    .badge-rec {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: var(--accent-green);
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      text-transform: uppercase;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      font-weight: 700;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      margin-right: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Helper Utilities */
+    .text-green { color: var(--accent-green); }
+    .text-red { color: var(--accent-red); }
+    .text-amber { color: var(--accent-amber); }
+    .text-blue { color: var(--accent-blue); }
+    .text-dim { color: var(--text-dim); }
+
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tooltip {
+      position: relative;
+      cursor: help;
+      text-decoration: underline dotted var(--text-dim);
+    }
+
+    /* Modal / Alert Notification Toast */
+    #toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background-color: var(--accent-green);
+      color: #022c22;
+      padding: 0.85rem 1.5rem;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      box-shadow: var(--shadow);
+      display: none;
+      z-index: 1000;
+      animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
 </head>
 <body>
-<main>
 
-  <span class="badge">Cal Poly Vibe Coding &middot; Session 01</span>
+  <!-- Navigation Header -->
+  <header>
+    <div class="header-container">
+      <a href="#" class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-green"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        PropInvest <span class="logo-badge">PRO</span>
+      </a>
 
-  <h1>It&rsquo;s live.</h1>
+      <nav class="nav-tabs">
+        <button class="nav-btn active" onclick="switchTab('evaluator')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+          Deal Evaluator
+        </button>
+        <button class="nav-btn" onclick="switchTab('markets')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
+          Location Hotspots
+        </button>
+        <button class="nav-btn" onclick="switchTab('strategy')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          Strategy Matcher
+        </button>
+        <button class="nav-btn" onclick="switchTab('portfolio')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          Saved Deals (<span id="saved-count">0</span>)
+        </button>
+      </nav>
+    </div>
+  </header>
 
-  <!-- Step 5: change the name below to yours, then commit. -->
-  <p class="name">Built by Lansing Crawford</p>
+  <!-- Main Application Body -->
+  <main>
 
-  <p class="lead">
-    This page is on the internet. Anyone you send this link to can open it,
-    on any device, right now. You made that happen in about five minutes.
-  </p>
+    <!-- TAB 1: DEAL EVALUATOR & CALCULATOR -->
+    <section id="tab-evaluator" class="tab-content active">
+      <div class="preset-pills">
+        <span style="font-size: 0.8rem; color: var(--text-muted); align-self: center; font-weight: 700; margin-right: 0.2rem;">Preset Deals:</span>
+        <button class="pill-btn" onclick="loadPreset('turnkey')">🏡 Turnkey Single Family</button>
+        <button class="pill-btn" onclick="loadPreset('duplex')">🏢 Duplex Value-Add</button>
+        <button class="pill-btn" onclick="loadPreset('brrrr')">🔨 BRRRR Project</button>
+        <button class="pill-btn" onclick="loadPreset('str')">🏖️ Airbnb/STR Beach Condo</button>
+      </div>
 
-  <div class="card">
-    <h2>Three things, in this order</h2>
-    <ol>
-      <li><b>Put your name on it.</b> Edit <code>index.html</code>, change
-        YOUR NAME HERE above, commit, refresh this page.</li>
-      <li><b>Submit this link.</b> Go to
-        <a href="https://www.calpolyvibecoding.com/">calpolyvibecoding.com</a>,
-        make an account, and paste this URL in. That is how you get counted,
-        and how Claude seats get assigned.</li>
-      <li><b>Then build.</b> Open Gemini, get a page, and replace this entire
-        file with it.</li>
-    </ol>
-  </div>
+      <div class="grid-1-2">
+        <!-- Input Column -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Property Financial Inputs</h2>
+              <p class="card-subtitle">Configure purchase terms & income projections</p>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="resetForm()">Reset</button>
+          </div>
 
-  <div class="card">
-    <h2>How to replace this page</h2>
-    <ol>
-      <li>Copy what Gemini gives you with the <b>copy button</b> on the code
-        block. Do not click and drag.</li>
-      <li>Open <code>index.html</code> here and click the pencil icon.</li>
-      <li><b>Ctrl+A</b> (<b>Cmd+A</b> on Mac), then <b>Delete</b>. All of it.
-        Yes, really.</li>
-      <li>Paste, commit, refresh.</li>
-    </ol>
-  </div>
+          <form id="calc-form" onsubmit="event.preventDefault();">
+            <!-- Property Info -->
+            <div class="form-group">
+              <label for="prop-name">Property Name or Address</label>
+              <input type="text" id="prop-name" value="742 Evergreen Terrace">
+            </div>
 
-  <footer>
-    Nothing on this page is precious. It exists so the link has something to
-    show before you have something of your own.
-  </footer>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="purchase-price">Purchase Price</label>
+                <div class="input-wrapper">
+                  <span class="input-prefix">$</span>
+                  <input type="number" id="purchase-price" class="has-prefix" value="320000" step="5000" oninput="calculate()">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="after-repair-val">After Repair Value (ARV)</label>
+                <div class="input-wrapper">
+                  <span class="input-prefix">$</span>
+                  <input type="number" id="after-repair-val" class="has-prefix" value="340000" step="5000" oninput="calculate()">
+                </div>
+              </div>
+            </div>
 
-</main>
+            <!-- Financing -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="down-payment-pct">Down Payment (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="down-payment-pct" class="has-suffix" value="20" min="0" max="100" oninput="calculate()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="interest-rate">Interest Rate (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="interest-rate" class="has-suffix" value="6.5" step="0.1" oninput="calculate()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="loan-term">Loan Term (Years)</label>
+                <select id="loan-term" onchange="calculate()">
+                  <option value="30" selected>30 Years Fixed</option>
+                  <option value="15">15 Years Fixed</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="rehab-costs">Initial Rehab Cost</label>
+                <div class="input-wrapper">
+                  <span class="input-prefix">$</span>
+                  <input type="number" id="rehab-costs" class="has-prefix" value="15000" step="1000" oninput="calculate()">
+                </div>
+              </div>
+            </div>
+
+            <!-- Income -->
+            <div class="form-row" style="margin-top: 0.5rem;">
+              <div class="form-group">
+                <label for="monthly-rent" class="text-green">Monthly Gross Rent</label>
+                <div class="input-wrapper">
+                  <span class="input-prefix">$</span>
+                  <input type="number" id="monthly-rent" class="has-prefix" value="2800" step="50" oninput="calculate()">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="vacancy-rate">Vacancy Rate (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="vacancy-rate" class="has-suffix" value="5" min="0" max="30" oninput="calculate()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Monthly Expenses -->
+            <p style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin: 0.75rem 0 0.5rem 0;">MONTHLY OPERATING EXPENSES</p>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="property-tax">Property Tax (Yr)</label>
+                <div class="input-wrapper">
+                  <span class="input-prefix">$</span>
+                  <input type="number" id="property-tax" class="has-prefix" value="3800" step="100" oninput="calculate()">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="home-insurance">Insurance (Yr)</label>
+                <div class="input-wrapper">
+                  <span class="input-prefix">$</span>
+                  <input type="number" id="home-insurance" class="has-prefix" value="1400" step="100" oninput="calculate()">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="maintenance-pct">Maintenance (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="maintenance-pct" class="has-suffix" value="5" min="0" max="20" oninput="calculate()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="mgmt-fee-pct">Prop Mgmt (%)</label>
+                <div class="input-wrapper">
+                  <input type="number" id="mgmt-fee-pct" class="has-suffix" value="8" min="0" max="20" oninput="calculate()">
+                  <span class="input-suffix">%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="hoa-monthly">HOA / Utilities / Other (Monthly)</label>
+              <div class="input-wrapper">
+                <span class="input-prefix">$</span>
+                <input type="number" id="hoa-monthly" class="has-prefix" value="50" step="25" oninput="calculate()">
+              </div>
+            </div>
+
+            <button class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;" onclick="saveCurrentDeal()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+              Save Deal to Portfolio
+            </button>
+          </form>
+        </div>
+
+        <!-- Output / Dashboard Column -->
+        <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+          
+          <!-- Key Metrics Grid -->
+          <div class="grid-4">
+            <div class="kpi-card" id="kpi-cashflow-card">
+              <span class="kpi-label">Monthly Cash Flow</span>
+              <span class="kpi-value" id="res-monthly-cashflow">$0</span>
+              <span class="kpi-sub" id="res-annual-cashflow">$0 / year</span>
+            </div>
+
+            <div class="kpi-card" id="kpi-coc-card">
+              <span class="kpi-label">Cash on Cash ROI</span>
+              <span class="kpi-value" id="res-coc">0.0%</span>
+              <span class="kpi-sub">Annual yield on total cash</span>
+            </div>
+
+            <div class="kpi-card">
+              <span class="kpi-label">Cap Rate</span>
+              <span class="kpi-value" id="res-cap-rate">0.0%</span>
+              <span class="kpi-sub">Unleveraged Return</span>
+            </div>
+
+            <div class="kpi-card">
+              <span class="kpi-label">Total Out of Pocket</span>
+              <span class="kpi-value" id="res-total-cash">$0</span>
+              <span class="kpi-sub" id="res-down-payment">Down payment + Rehab</span>
+            </div>
+          </div>
+
+          <!-- Breakdown Visuals & Financial Statements -->
+          <div class="grid-2">
+            <!-- Monthly Cash Flow Waterfall -->
+            <div class="card">
+              <h3 class="card-title">Monthly Income vs Expense</h3>
+              <p class="card-subtitle">Where every dollar of rent goes</p>
+              
+              <div class="chart-box">
+                <canvas id="expensesDonutChart"></canvas>
+              </div>
+
+              <div style="margin-top: 1rem; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.4rem;">
+                <div class="flex-between">
+                  <span class="text-dim">Mortgage Principal & Interest:</span>
+                  <span class="font-bold" id="res-pi-payment">$0</span>
+                </div>
+                <div class="flex-between">
+                  <span class="text-dim">Taxes & Insurance:</span>
+                  <span class="font-bold" id="res-tax-ins-payment">$0</span>
+                </div>
+                <div class="flex-between">
+                  <span class="text-dim">OpEx (Mgmt, Maint, Vacancy):</span>
+                  <span class="font-bold" id="res-opex-payment">$0</span>
+                </div>
+                <div class="flex-between" style="border-top: 1px solid var(--border-color); padding-top: 0.4rem; font-weight: 700;">
+                  <span>Net Monthly Cash Flow:</span>
+                  <span id="res-net-cashflow-sub" class="text-green">$0</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Additional Valuation Ratios -->
+            <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 class="card-title">Deal Risk & Ratios</h3>
+                <p class="card-subtitle">Key underwriting criteria metrics</p>
+
+                <div style="margin-top: 1rem; display: flex; flex-direction: column; gap: 0.85rem;">
+                  <div>
+                    <div class="flex-between" style="font-size: 0.85rem; margin-bottom: 0.2rem;">
+                      <span class="tooltip" title="Gross Rent Multiplier = Purchase Price / Gross Annual Rent. Lower is better (<10)">Gross Rent Multiplier (GRM)</span>
+                      <strong id="res-grm">0.0</strong>
+                    </div>
+                    <div style="height: 6px; background: var(--bg-input); border-radius: 3px; overflow: hidden;">
+                      <div id="bar-grm" style="height: 100%; width: 50%; background: var(--accent-blue);"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex-between" style="font-size: 0.85rem; margin-bottom: 0.2rem;">
+                      <span class="tooltip" title="Debt Coverage Ratio = NOI / Annual Mortgage. Safe deals are > 1.25">Debt Coverage Ratio (DSCR)</span>
+                      <strong id="res-dscr">0.0x</strong>
+                    </div>
+                    <div style="height: 6px; background: var(--bg-input); border-radius: 3px; overflow: hidden;">
+                      <div id="bar-dscr" style="height: 100%; width: 50%; background: var(--accent-green);"></div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex-between" style="font-size: 0.85rem; margin-bottom: 0.2rem;">
+                      <span class="tooltip" title="The 1% Rule test: Monthly rent should ideally equal ~1% of purchase price">1% Rule Benchmark</span>
+                      <strong id="res-one-pct">0.0%</strong>
+                    </div>
+                    <div style="height: 6px; background: var(--bg-input); border-radius: 3px; overflow: hidden;">
+                      <div id="bar-one-pct" style="height: 100%; width: 50%; background: var(--accent-cyan);"></div>
+                    </div>
+                  </div>
+
+                  <div style="background: var(--bg-input); padding: 0.85rem; border-radius: var(--radius-sm); margin-top: 0.5rem; border: 1px solid var(--border-color);">
+                    <div class="flex-between" style="font-size: 0.85rem;">
+                      <span class="text-dim">Net Operating Income (NOI):</span>
+                      <span id="res-noi" style="font-weight: 700;">$0 / yr</span>
+                    </div>
+                    <div class="flex-between" style="font-size: 0.85rem; margin-top: 0.25rem;">
+                      <span class="text-dim">Immediate Equity Built:</span>
+                      <span id="res-equity-built" style="font-weight: 700;" class="text-green">$0</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div style="margin-top: 1rem; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: var(--radius-sm); padding: 0.75rem; font-size: 0.8rem; color: #93c5fd;">
+                <strong>💡 Investor Verdict:</strong> <span id="res-verdict">Loading analysis...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 10-Year Wealth Projection Chart -->
+          <div class="card">
+            <div class="flex-between">
+              <div>
+                <h3 class="card-title">10-Year Wealth Accumulation Forecast</h3>
+                <p class="card-subtitle">Combined loan payoff equity + property appreciation (3%/yr) + cumulative cash flow</p>
+              </div>
+              <div style="text-align: right;">
+                <span class="text-dim" style="font-size: 0.8rem;">Est. 10-Yr Total Gain</span>
+                <div id="res-10yr-gain" style="font-size: 1.25rem; font-weight: 800; color: var(--accent-green);">$0</div>
+              </div>
+            </div>
+            <div class="chart-box" style="height: 240px;">
+              <canvas id="projectionChart"></canvas>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: LOCATION HOTSPOT FINDER -->
+    <section id="tab-markets" class="tab-content">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Top Investment Market Explorer</h2>
+            <p class="card-subtitle">Evaluate target US metro areas or add custom markets based on yield metrics</p>
+          </div>
+          <button class="btn btn-primary btn-sm" onclick="showAddMarketPrompt()">+ Add Custom Market</button>
+        </div>
+
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+          Adjust your investment criteria priorities below to recalculate market compatibility scores:
+        </p>
+
+        <!-- Dynamic Weight Sliders -->
+        <div class="grid-3" style="background: var(--bg-input); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--border-color); margin-bottom: 1.5rem;">
+          <div>
+            <div class="flex-between" style="font-size: 0.8rem; font-weight: 600;">
+              <span>Cash Flow Yield Weight</span>
+              <span id="weight-cashflow-val">40%</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-cashflow" min="0" max="100" value="40" oninput="updateMarketScores()">
+          </div>
+          <div>
+            <div class="flex-between" style="font-size: 0.8rem; font-weight: 600;">
+              <span>Appreciation / Job Growth</span>
+              <span id="weight-growth-val">40%</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-growth" min="0" max="100" value="40" oninput="updateMarketScores()">
+          </div>
+          <div>
+            <div class="flex-between" style="font-size: 0.8rem; font-weight: 600;">
+              <span>Property Tax & Low Expense</span>
+              <span id="weight-tax-val">20%</span>
+            </div>
+            <input type="range" class="range-slider" id="slider-tax" min="0" max="100" value="20" oninput="updateMarketScores()">
+          </div>
+        </div>
+
+        <!-- Market Table -->
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Market / Metro Area</th>
+                <th>Avg Median Price</th>
+                <th>Price-to-Rent</th>
+                <th>Pop Growth (3yr)</th>
+                <th>Avg Tax Rate</th>
+                <th>Match Score</th>
+                <th>Primary Strategy</th>
+              </tr>
+            </thead>
+            <tbody id="market-table-body">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Market Score Comparison Chart -->
+      <div class="card">
+        <h3 class="card-title">Market Score & Return Profile Comparison</h3>
+        <p class="card-subtitle">Comparing relative attractiveness across cashflow vs appreciation</p>
+        <div class="chart-box" style="height: 250px;">
+          <canvas id="marketChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: STRATEGY MATCHER -->
+    <section id="tab-strategy" class="tab-content">
+      <div class="card" style="margin-bottom: 1.5rem;">
+        <h2 class="card-title">Investment Strategy Advisor</h2>
+        <p class="card-subtitle">Answer a few questions to determine the best real estate model for your goals</p>
+
+        <div class="grid-3" style="margin-top: 1.25rem;">
+          <div class="form-group">
+            <label for="quiz-capital">Available Starting Capital</label>
+            <select id="quiz-capital" onchange="recommendStrategy()">
+              <option value="low">Under $35,000</option>
+              <option value="med" selected>$35,000 - $100,000</option>
+              <option value="high">Over $100,000</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quiz-time">Time & Involvement</label>
+            <select id="quiz-time" onchange="recommendStrategy()">
+              <option value="passive">Passive (Hands-off)</option>
+              <option value="moderate" selected>Moderate (Active oversight)</option>
+              <option value="active">Active (DIY / Contractor Mgmt)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="quiz-goal">Primary Goal</label>
+            <select id="quiz-goal" onchange="recommendStrategy()">
+              <option value="cashflow" selected>Immediate Monthly Cash Flow</option>
+              <option value="wealth">Long-Term Wealth & Appreciation</option>
+              <option value="scale">Rapid Portfolio Scaling</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recommendation Results Cards -->
+      <div class="grid-2" id="strategy-results-grid">
+        <!-- Rendered via JS -->
+      </div>
+    </section>
+
+    <!-- TAB 4: SAVED DEALS PORTFOLIO -->
+    <section id="tab-portfolio" class="tab-content">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Saved Deal Portfolio & Comparison</h2>
+            <p class="card-subtitle">Side-by-side analysis of your evaluated properties</p>
+          </div>
+          <button class="btn btn-outline btn-sm text-red" onclick="clearPortfolio()">Clear All Deals</button>
+        </div>
+
+        <div id="portfolio-empty-state" style="text-align: center; padding: 3rem 1rem; color: var(--text-dim);">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 1rem;"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+          <p style="font-size: 1.1rem; font-weight: 700; color: var(--text-muted);">No saved deals yet</p>
+          <p style="font-size: 0.85rem; margin-top: 0.25rem;">Evaluate a property in the Deal Evaluator tab and click "Save Deal to Portfolio".</p>
+        </div>
+
+        <div class="table-responsive" id="portfolio-table-container" style="display: none;">
+          <table>
+            <thead>
+              <tr>
+                <th>Property</th>
+                <th>Purchase Price</th>
+                <th>Total Cash Needed</th>
+                <th>Gross Rent</th>
+                <th>Monthly Cash Flow</th>
+                <th>CoC Return</th>
+                <th>Cap Rate</th>
+                <th>DSCR</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="portfolio-table-body">
+              <!-- Dynamically Populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast">Deal saved to portfolio!</div>
+
+  <script>
+    /* ==========================================================================
+       GLOBAL STATE & INITIALIZATION
+       ========================================================================== */
+    let savedDeals = [];
+    let currentCalculation = {};
+
+    // Initial Default Market Data
+    let marketsData = [
+      { name: "Indianapolis, IN", price: 235000, ptr: 11.2, popGrowth: 3.4, taxRate: 0.85, strategy: "Long-Term Rental / Cashflow" },
+      { name: "Tampa / Lakeland, FL", price: 340000, ptr: 14.5, popGrowth: 6.2, taxRate: 0.98, strategy: "Hybrid Cashflow/Growth" },
+      { name: "Columbus, OH", price: 260000, ptr: 12.1, popGrowth: 4.8, taxRate: 1.45, strategy: "Turnkey Single Family" },
+      { name: "Austin, TX", price: 475000, ptr: 18.2, popGrowth: 7.5, taxRate: 1.80, strategy: "Appreciation / BRRRR" },
+      { name: "Huntsville, AL", price: 280000, ptr: 12.8, popGrowth: 5.1, taxRate: 0.42, strategy: "High Yield Cash Flow" }
+    ];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      calculate();
+      updateMarketScores();
+      recommendStrategy();
+    });
+
+    /* ==========================================================================
+       TAB NAVIGATION SYSTEM
+       ========================================================================== */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+      
+      const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(btn => 
+        btn.getAttribute('onclick').includes(tabId)
+      );
+      if (activeBtn) activeBtn.classList.add('active');
+
+      // Re-trigger Canvas renders if switching to charts tab
+      if (tabId === 'evaluator') {
+        calculate();
+      } else if (tabId === 'markets') {
+        renderMarketChart();
+      }
+    }
+
+    /* ==========================================================================
+       DEAL EVALUATOR & FINANCIAL ENGINE
+       ========================================================================== */
+    function calculate() {
+      // Inputs
+      const price = parseFloat(document.getElementById('purchase-price').value) || 0;
+      const arv = parseFloat(document.getElementById('after-repair-val').value) || price;
+      const downPct = parseFloat(document.getElementById('down-payment-pct').value) || 0;
+      const rate = parseFloat(document.getElementById('interest-rate').value) || 0;
+      const termYears = parseInt(document.getElementById('loan-term').value) || 30;
+      const rehab = parseFloat(document.getElementById('rehab-costs').value) || 0;
+      
+      const grossRent = parseFloat(document.getElementById('monthly-rent').value) || 0;
+      const vacancyPct = parseFloat(document.getElementById('vacancy-rate').value) || 0;
+
+      const propTaxYr = parseFloat(document.getElementById('property-tax').value) || 0;
+      const insuranceYr = parseFloat(document.getElementById('home-insurance').value) || 0;
+      const maintPct = parseFloat(document.getElementById('maintenance-pct').value) || 0;
+      const mgmtPct = parseFloat(document.getElementById('mgmt-fee-pct').value) || 0;
+      const hoaMonthly = parseFloat(document.getElementById('hoa-monthly').value) || 0;
+
+      // Calculations
+      const downPayment = price * (downPct / 100);
+      const loanAmount = price - downPayment;
+      const closingCosts = price * 0.03; // Estimated 3% closing costs
+      const totalCashNeeded = downPayment + rehab + closingCosts;
+
+      // Monthly Debt Service (P&I)
+      const monthlyRate = (rate / 100) / 12;
+      const totalPayments = termYears * 12;
+      let monthlyPI = 0;
+      if (monthlyRate > 0 && loanAmount > 0) {
+        monthlyPI = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, totalPayments)) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+      }
+
+      // Monthly Expenses
+      const monthlyTax = propTaxYr / 12;
+      const monthlyIns = insuranceYr / 12;
+      const monthlyVacancy = grossRent * (vacancyPct / 100);
+      const monthlyMaint = grossRent * (maintPct / 100);
+      const monthlyMgmt = grossRent * (mgmtPct / 100);
+
+      const totalMonthlyOpEx = monthlyTax + monthlyIns + monthlyVacancy + monthlyMaint + monthlyMgmt + hoaMonthly;
+      const totalMonthlyExpenses = monthlyPI + totalMonthlyOpEx;
+
+      const monthlyCashFlow = grossRent - totalMonthlyExpenses;
+      const annualCashFlow = monthlyCashFlow * 12;
+
+      // Unleveraged NOI
+      const effectiveGrossIncome = (grossRent * 12) * (1 - (vacancyPct / 100));
+      const annualOpEx = (totalMonthlyOpEx - monthlyVacancy) * 12 + (monthlyVacancy * 12);
+      const annualNOI = effectiveGrossIncome - annualOpEx;
+
+      // Metrics
+      const capRate = price > 0 ? (annualNOI / price) * 100 : 0;
+      const cocROI = totalCashNeeded > 0 ? (annualCashFlow / totalCashNeeded) * 100 : 0;
+      const grm = (grossRent * 12) > 0 ? price / (grossRent * 12) : 0;
+      const annualDebtService = monthlyPI * 12;
+      const dscr = annualDebtService > 0 ? (annualNOI / annualDebtService) : 0;
+      const onePctRule = price > 0 ? (grossRent / price) * 100 : 0;
+      const immediateEquity = arv - price;
+
+      // Save calculation state
+      currentCalculation = {
+        name: document.getElementById('prop-name').value || "Unnamed Deal",
+        price, arv, totalCashNeeded, grossRent, monthlyCashFlow, annualCashFlow,
+        capRate, cocROI, grm, dscr, monthlyPI, totalMonthlyOpEx, loanAmount
+      };
+
+      // Update UI Elements
+      document.getElementById('res-monthly-cashflow').textContent = formatCurrency(monthlyCashFlow);
+      document.getElementById('res-monthly-cashflow').className = `kpi-value ${monthlyCashFlow >= 200 ? 'text-green' : monthlyCashFlow >= 0 ? 'text-amber' : 'text-red'}`;
+      document.getElementById('res-annual-cashflow').textContent = `${formatCurrency(annualCashFlow)} / year`;
+
+      // Update KPI Cards styling
+      const cashflowCard = document.getElementById('kpi-cashflow-card');
+      cashflowCard.className = `kpi-card ${monthlyCashFlow >= 200 ? 'positive' : monthlyCashFlow >= 0 ? 'warning' : 'negative'}`;
+
+      const cocCard = document.getElementById('kpi-coc-card');
+      cocCard.className = `kpi-card ${cocROI >= 8 ? 'positive' : cocROI >= 4 ? 'warning' : 'negative'}`;
+
+      document.getElementById('res-coc').textContent = `${cocROI.toFixed(1)}%`;
+      document.getElementById('res-cap-rate').textContent = `${capRate.toFixed(2)}%`;
+      document.getElementById('res-total-cash').textContent = formatCurrency(totalCashNeeded);
+      document.getElementById('res-down-payment').textContent = `Down: ${formatCurrency(downPayment)} + Rehab: ${formatCurrency(rehab)}`;
+
+      // Detailed Breakdown
+      document.getElementById('res-pi-payment').textContent = formatCurrency(monthlyPI);
+      document.getElementById('res-tax-ins-payment').textContent = formatCurrency(monthlyTax + monthlyIns);
+      document.getElementById('res-opex-payment').textContent = formatCurrency(monthlyVacancy + monthlyMaint + monthlyMgmt + hoaMonthly);
+      document.getElementById('res-net-cashflow-sub').textContent = formatCurrency(monthlyCashFlow);
+      document.getElementById('res-net-cashflow-sub').className = monthlyCashFlow >= 0 ? "text-green font-bold" : "text-red font-bold";
+
+      // Benchmarks & Ratios
+      document.getElementById('res-grm').textContent = grm.toFixed(2);
+      document.getElementById('bar-grm').style.width = `${Math.min(grm * 5, 100)}%`;
+
+      document.getElementById('res-dscr').textContent = `${dscr.toFixed(2)}x`;
+      document.getElementById('bar-dscr').style.width = `${Math.min(dscr * 50, 100)}%`;
+      document.getElementById('bar-dscr').style.background = dscr >= 1.25 ? 'var(--accent-green)' : 'var(--accent-amber)';
+
+      document.getElementById('res-one-pct').textContent = `${onePctRule.toFixed(2)}%`;
+      document.getElementById('bar-one-pct').style.width = `${Math.min(onePctRule * 80, 100)}%`;
+
+      document.getElementById('res-noi').textContent = `${formatCurrency(annualNOI)} / yr`;
+      document.getElementById('res-equity-built').textContent = formatCurrency(immediateEquity);
+
+      // Investor Verdict Generator
+      let verdict = "";
+      if (cocROI >= 10 && dscr >= 1.25 && monthlyCashFlow >= 250) {
+        verdict = "🔥 Excellent Deal! Strong cash flow yield and safety coverage. High priority investment target.";
+      } else if (cocROI >= 6 && monthlyCashFlow > 0) {
+        verdict = "👍 Solid Moderate Cashflow. Suitable for stable long-term appreciation with decent yield.";
+      } else if (monthlyCashFlow < 0) {
+        verdict = "⚠️ Negative Cash Flow Warning! Requires higher rent or a lower purchase price to avoid out-of-pocket losses.";
+      } else {
+        verdict = "⚖️ Marginal Deal. Consider negotiating purchase price down or increasing gross rents to improve returns.";
+      }
+      document.getElementById('res-verdict').textContent = verdict;
+
+      // Render Charts
+      renderDonutExpenses(grossRent, monthlyPI, monthlyTax + monthlyIns, monthlyVacancy + monthlyMaint + monthlyMgmt + hoaMonthly, monthlyCashFlow);
+      render10YearProjection(price, loanAmount, annualCashFlow, totalCashNeeded);
+    }
+
+    /* ==========================================================================
+       CANVAS CHART RENDERERS (NO EXTERNAL LIBRARIES)
+       ========================================================================== */
+    // 1. Monthly Expense Donut Chart
+    function renderDonutExpenses(rent, pi, taxIns, opex, cashflow) {
+      const canvas = document.getElementById('expensesDonutChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      // Handle High DPI displays
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      if (rent <= 0) return;
+
+      const items = [
+        { label: 'Mortgage (P&I)', val: Math.max(pi, 0), color: '#3b82f6' },
+        { label: 'Taxes & Insurance', val: Math.max(taxIns, 0), color: '#f59e0b' },
+        { label: 'Operating Expenses', val: Math.max(opex, 0), color: '#06b6d4' },
+        { label: 'Net Cash Flow', val: Math.max(cashflow, 0), color: '#10b981' }
+      ];
+
+      const totalVal = items.reduce((acc, item) => acc + item.val, 0);
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const outerRadius = Math.min(centerX, centerY) - 20;
+      const innerRadius = outerRadius * 0.62;
+
+      let startAngle = -Math.PI / 2;
+
+      items.forEach(item => {
+        if (item.val <= 0) return;
+        const sliceAngle = (item.val / totalVal) * (Math.PI * 2);
+
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, outerRadius, startAngle, startAngle + sliceAngle);
+        ctx.arc(centerX, centerY, innerRadius, startAngle + sliceAngle, startAngle, true);
+        ctx.closePath();
+        ctx.fillStyle = item.color;
+        ctx.fill();
+
+        startAngle += sliceAngle;
+      });
+
+      // Center text inside Donut
+      ctx.fillStyle = '#f8fafc';
+      ctx.font = '800 16px "Plus Jakarta Sans"';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(formatCurrency(rent), centerX, centerY - 8);
+      ctx.fillStyle = '#94a3b8';
+      ctx.font = '600 11px "Plus Jakarta Sans"';
+      ctx.fillText('Gross Rent', centerX, centerY + 12);
+    }
+
+    // 2. 10-Year Wealth Projection Line/Bar Chart
+    function render10YearProjection(purchasePrice, initialLoan, initialAnnualCashflow, totalCashIn) {
+      const canvas = document.getElementById('projectionChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      const years = 10;
+      const appreciationRate = 0.03; // 3% yearly average
+      const rentGrowthRate = 0.025;  // 2.5% rent growth
+
+      let yearlyEquity = [];
+      let yearlyAccumulatedCashflow = [];
+      let cumulativeCashflow = 0;
+      let currentPropertyValue = purchasePrice;
+      let currentLoanBalance = initialLoan;
+      let currentCashflow = initialAnnualCashflow;
+
+      for (let y = 1; y <= years; y++) {
+        currentPropertyValue *= (1 + appreciationRate);
+        currentLoanBalance *= 0.972; // Approximate principal paydown curve
+        cumulativeCashflow += currentCashflow;
+        currentCashflow *= (1 + rentGrowthRate);
+
+        const equity = currentPropertyValue - currentLoanBalance;
+        yearlyEquity.push(equity);
+        yearlyAccumulatedCashflow.push(cumulativeCashflow);
+      }
+
+      const total10YrWealthGain = (yearlyEquity[9] - (purchasePrice - initialLoan)) + yearlyAccumulatedCashflow[9];
+      document.getElementById('res-10yr-gain').textContent = formatCurrency(total10YrWealthGain);
+
+      // Draw Chart
+      const padding = 40;
+      const chartWidth = rect.width - padding * 2;
+      const chartHeight = rect.height - padding * 2;
+
+      const maxVal = Math.max(...yearlyEquity) + Math.max(...yearlyAccumulatedCashflow);
+
+      const stepX = chartWidth / (years - 1);
+
+      // Grid lines
+      ctx.strokeStyle = '#232d42';
+      ctx.lineWidth = 1;
+      for (let i = 0; i <= 4; i++) {
+        const y = padding + (chartHeight / 4) * i;
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(rect.width - padding, y);
+        ctx.stroke();
+      }
+
+      // Equity Line
+      ctx.beginPath();
+      ctx.strokeStyle = '#3b82f6';
+      ctx.lineWidth = 3;
+      for (let i = 0; i < years; i++) {
+        const x = padding + i * stepX;
+        const y = padding + chartHeight - (yearlyEquity[i] / maxVal) * chartHeight;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // Cash flow Line
+      ctx.beginPath();
+      ctx.strokeStyle = '#10b981';
+      ctx.lineWidth = 3;
+      for (let i = 0; i < years; i++) {
+        const x = padding + i * stepX;
+        const y = padding + chartHeight - (yearlyAccumulatedCashflow[i] / maxVal) * chartHeight;
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+
+      // X-Axis Year Labels
+      ctx.fillStyle = '#64748b';
+      ctx.font = '600 11px "Plus Jakarta Sans"';
+      ctx.textAlign = 'center';
+      for (let i = 0; i < years; i++) {
+        const x = padding + i * stepX;
+        ctx.fillText(`Yr ${i+1}`, x, rect.height - 10);
+      }
+    }
+
+    /* ==========================================================================
+       TAB 2: MARKET HOTSPOTS LOGIC
+       ========================================================================== */
+    function updateMarketScores() {
+      const wCashflow = parseInt(document.getElementById('slider-cashflow').value) || 0;
+      const wGrowth = parseInt(document.getElementById('slider-growth').value) || 0;
+      const wTax = parseInt(document.getElementById('slider-tax').value) || 0;
+
+      document.getElementById('weight-cashflow-val').textContent = `${wCashflow}%`;
+      document.getElementById('weight-growth-val').textContent = `${wGrowth}%`;
+      document.getElementById('weight-tax-val').textContent = `${wTax}%`;
+
+      const tbody = document.getElementById('market-table-body');
+      tbody.innerHTML = '';
+
+      marketsData.forEach(m => {
+        // Calculate dynamic match score normalized 0-100
+        const cashflowScore = (20 - m.ptr) * 6; // lower Price-to-Rent = higher cashflow yield
+        const growthScore = m.popGrowth * 12;
+        const taxScore = (2.0 - m.taxRate) * 35;
+
+        const totalWeight = (wCashflow + wGrowth + wTax) || 1;
+        const score = Math.min(Math.max(Math.round(((cashflowScore * wCashflow) + (growthScore * wGrowth) + (taxScore * wTax)) / totalWeight), 45), 98);
+
+        m.currentScore = score;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-weight: 700;">${m.name}</td>
+          <td>${formatCurrency(m.price)}</td>
+          <td>${m.ptr}</td>
+          <td class="text-green">+${m.popGrowth}%</td>
+          <td>${m.taxRate}%</td>
+          <td>
+            <span style="background: ${score >= 80 ? 'rgba(16, 185, 129, 0.2)' : 'rgba(59, 130, 246, 0.2)'}; 
+                         color: ${score >= 80 ? 'var(--accent-green)' : 'var(--accent-blue)'}; 
+                         padding: 0.25rem 0.6rem; border-radius: 12px; font-weight: 800;">
+              ${score} / 100
+            </span>
+          </td>
+          <td><span class="tag">${m.strategy}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      renderMarketChart();
+    }
+
+    function renderMarketChart() {
+      const canvas = document.getElementById('marketChart');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.scale(dpr, dpr);
+
+      ctx.clearRect(0, 0, rect.width, rect.height);
+
+      const barWidth = 36;
+      const gap = (rect.width - 60 - (marketsData.length * barWidth)) / (marketsData.length + 1);
+
+      marketsData.forEach((m, idx) => {
+        const x = 40 + gap + idx * (barWidth + gap);
+        const score = m.currentScore || 70;
+        const barHeight = (score / 100) * (rect.height - 70);
+        const y = rect.height - 40 - barHeight;
+
+        // Bar Fill
+        ctx.fillStyle = score >= 80 ? '#10b981' : '#3b82f6';
+        ctx.beginPath();
+        ctx.roundRect(x, y, barWidth, barHeight, [6, 6, 0, 0]);
+        ctx.fill();
+
+        // Label Score
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = '700 11px "Plus Jakarta Sans"';
+        ctx.textAlign = 'center';
+        ctx.fillText(`${score}`, x + barWidth / 2, y - 8);
+
+        // Label City
+        ctx.fillStyle = '#94a3b8';
+        ctx.font = '600 10px "Plus Jakarta Sans"';
+        ctx.fillText(m.name.split(',')[0], x + barWidth / 2, rect.height - 15);
+      });
+    }
+
+    function showAddMarketPrompt() {
+      const name = prompt("Enter City / Market Name (e.g., Nashville, TN):");
+      if (!name) return;
+      const price = parseFloat(prompt("Enter Median Home Price ($):", "310000")) || 300000;
+      const ptr = parseFloat(prompt("Enter Price-to-Rent Ratio:", "13.5")) || 14;
+
+      marketsData.push({
+        name, price, ptr, popGrowth: 4.0, taxRate: 1.1, strategy: "Custom Added Target"
+      });
+      updateMarketScores();
+    }
+
+    /* ==========================================================================
+       TAB 3: STRATEGY ADVISOR ALGORITHM
+       ========================================================================== */
+    const strategies = [
+      {
+        id: "turnkey",
+        title: "Turnkey Single Family Rental (LTR)",
+        desc: "Buy fully renovated properties with existing tenants in reliable cash-flowing markets.",
+        capitalReq: "med",
+        timeReq: "passive",
+        tags: ["Low Effort", "Stable Yield", "Hands-off"],
+        cashflowRating: "High",
+        riskRating: "Low"
+      },
+      {
+        id: "brrrr",
+        title: "BRRRR Strategy (Buy, Rehab, Rent, Refinance, Repeat)",
+        desc: "Force equity through renovation, refinance your initial capital back out, and retain a high-yielding rental.",
+        capitalReq: "high",
+        timeReq: "active",
+        tags: ["Rapid Scaling", "High ROI", "Active Rehab"],
+        cashflowRating: "Highest",
+        riskRating: "Moderate-High"
+      },
+      {
+        id: "househack",
+        title: "House Hacking (Multi-Unit 2-4 Plex)",
+        desc: "Live in one unit of a duplex or triplex while tenants in other units pay off your mortgage entirely.",
+        capitalReq: "low",
+        timeReq: "moderate",
+        tags: ["Low Down Payment (3.5%)", "Zero Living Expense"],
+        cashflowRating: "Very High",
+        riskRating: "Low"
+      },
+      {
+        id: "str",
+        title: "Short-Term Vacation Rental (Airbnb)",
+        desc: "Operate furnished rentals in tourist or business hubs for 2x - 3x higher gross revenue than long-term rents.",
+        capitalReq: "med",
+        timeReq: "active",
+        tags: ["Maximum Revenue", "Hospitality Mgmt"],
+        cashflowRating: "Highest",
+        riskRating: "Moderate"
+      }
+    ];
+
+    function recommendStrategy() {
+      const capital = document.getElementById('quiz-capital').value;
+      const time = document.getElementById('quiz-time').value;
+      const goal = document.getElementById('quiz-goal').value;
+
+      const container = document.getElementById('strategy-results-grid');
+      container.innerHTML = '';
+
+      strategies.forEach(strat => {
+        let isRecommended = false;
+        if (capital === 'low' && strat.id === 'househack') isRecommended = true;
+        else if (time === 'passive' && strat.id === 'turnkey') isRecommended = true;
+        else if (goal === 'scale' && strat.id === 'brrrr') isRecommended = true;
+        else if (goal === 'cashflow' && time === 'active' && strat.id === 'str') isRecommended = true;
+
+        const card = document.createElement('div');
+        card.className = `strategy-card ${isRecommended ? 'recommended' : ''}`;
+        card.innerHTML = `
+          ${isRecommended ? '<span class="badge-rec">Best Match</span>' : ''}
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; ${isRecommended ? 'color: var(--accent-green);' : ''}">${strat.title}</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">${strat.desc}</p>
+          <div>
+            ${strat.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+          <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-dim);">
+            <span>Cash Flow Potential: <strong class="text-main">${strat.cashflowRating}</strong></span>
+            <span>Risk Level: <strong class="text-main">${strat.riskRating}</strong></span>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    /* ==========================================================================
+       TAB 4: PORTFOLIO & SAVED DEALS
+       ========================================================================== */
+    function saveCurrentDeal() {
+      if (!currentCalculation.price) return;
+
+      const newDeal = { ...currentCalculation, id: Date.now() };
+      savedDeals.push(newDeal);
+
+      updatePortfolioTable();
+      showToast("Deal successfully saved to portfolio!");
+    }
+
+    function updatePortfolioTable() {
+      document.getElementById('saved-count').textContent = savedDeals.length;
+
+      const emptyState = document.getElementById('portfolio-empty-state');
+      const tableContainer = document.getElementById('portfolio-table-container');
+      const tbody = document.getElementById('portfolio-table-body');
+
+      if (savedDeals.length === 0) {
+        emptyState.style.display = 'block';
+        tableContainer.style.display = 'none';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      tableContainer.style.display = 'block';
+      tbody.innerHTML = '';
+
+      savedDeals.forEach((deal, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td style="font-weight: 700;">${deal.name}</td>
+          <td>${formatCurrency(deal.price)}</td>
+          <td>${formatCurrency(deal.totalCashNeeded)}</td>
+          <td>${formatCurrency(deal.grossRent)}/mo</td>
+          <td class="${deal.monthlyCashFlow >= 0 ? 'text-green font-bold' : 'text-red font-bold'}">${formatCurrency(deal.monthlyCashFlow)}</td>
+          <td class="font-bold">${deal.cocROI.toFixed(1)}%</td>
+          <td>${deal.capRate.toFixed(2)}%</td>
+          <td>${deal.dscr.toFixed(2)}x</td>
+          <td>
+            <button class="btn btn-outline btn-sm text-red" onclick="deleteDeal(${deal.id})">Remove</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function deleteDeal(id) {
+      savedDeals = savedDeals.filter(d => d.id !== id);
+      updatePortfolioTable();
+    }
+
+    function clearPortfolio() {
+      if (confirm("Clear all saved property deals?")) {
+        savedDeals = [];
+        updatePortfolioTable();
+      }
+    }
+
+    /* ==========================================================================
+       PRESETS & UTILITIES
+       ========================================================================== */
+    function loadPreset(type) {
+      if (type === 'turnkey') {
+        document.getElementById('prop-name').value = "Oakridge Turnkey Single Family";
+        document.getElementById('purchase-price').value = 240000;
+        document.getElementById('after-repair-val').value = 240000;
+        document.getElementById('down-payment-pct').value = 20;
+        document.getElementById('interest-rate').value = 6.5;
+        document.getElementById('rehab-costs').value = 0;
+        document.getElementById('monthly-rent').value = 2200;
+        document.getElementById('vacancy-rate').value = 5;
+        document.getElementById('property-tax').value = 2800;
+        document.getElementById('home-insurance').value = 1100;
+      } else if (type === 'duplex') {
+        document.getElementById('prop-name').value = "Main St Duplex (2 x 2BR)";
+        document.getElementById('purchase-price').value = 380000;
+        document.getElementById('after-repair-val').value = 420000;
+        document.getElementById('down-payment-pct').value = 25;
+        document.getElementById('interest-rate').value = 6.8;
+        document.getElementById('rehab-costs').value = 20000;
+        document.getElementById('monthly-rent').value = 3600;
+        document.getElementById('vacancy-rate').value = 6;
+        document.getElementById('property-tax').value = 4200;
+        document.getElementById('home-insurance').value = 1600;
+      } else if (type === 'brrrr') {
+        document.getElementById('prop-name').value = "Distressed BRRRR Special";
+        document.getElementById('purchase-price').value = 160000;
+        document.getElementById('after-repair-val').value = 260000;
+        document.getElementById('down-payment-pct').value = 20;
+        document.getElementById('interest-rate').value = 7.0;
+        document.getElementById('rehab-costs').value = 45000;
+        document.getElementById('monthly-rent').value = 2100;
+        document.getElementById('vacancy-rate').value = 5;
+        document.getElementById('property-tax').value = 2100;
+        document.getElementById('home-insurance').value = 950;
+      } else if (type === 'str') {
+        document.getElementById('prop-name').value = "Gulf Coast Beach Condo (Airbnb)";
+        document.getElementById('purchase-price').value = 420000;
+        document.getElementById('after-repair-val').value = 430000;
+        document.getElementById('down-payment-pct').value = 25;
+        document.getElementById('interest-rate').value = 6.9;
+        document.getElementById('rehab-costs').value = 15000;
+        document.getElementById('monthly-rent').value = 5400; // STR seasonal avg
+        document.getElementById('vacancy-rate').value = 20; // higher STR vacancy/cleaning
+        document.getElementById('property-tax').value = 5200;
+        document.getElementById('home-insurance').value = 2400;
+        document.getElementById('hoa-monthly').value = 350;
+      }
+      calculate();
+    }
+
+    function resetForm() {
+      document.getElementById('calc-form').reset();
+      calculate();
+    }
+
+    function formatCurrency(num) {
+      return new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+        maximumFractionDigits: 0
+      }).format(num || 0);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
+    }
+  </script>
 </body>
 </html>
